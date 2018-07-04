@@ -21,8 +21,8 @@ if (_goggles != "") then { _player addGoggles _goggles };
 
 sleep 0.1;
 
-// Remove GPS
-_player unlinkItem "ItemGPS";
+// Add GPS
+_player linkItem "ItemGPS";
 
 // Remove radio
 //_player unlinkItem "ItemRadio";
@@ -33,15 +33,11 @@ if (hmd _player != "") then { _player unlinkItem hmd _player };
 // Add NVG
 _player linkItem "NVGoggles";
 
+// Add Backpack
 _player addBackpack "B_AssaultPack_rgr";
 
-_player addMagazine "9Rnd_45ACP_Mag";
-_player addWeapon "hgun_ACPC2_F";
-_player addMagazine "9Rnd_45ACP_Mag";
-_player addMagazine "9Rnd_45ACP_Mag";
-_player addMagazine "9Rnd_45ACP_Mag";
 _player addItem "FirstAidKit";
-_player selectWeapon "hgun_ACPC2_F";
+
 
 switch (true) do
 {
@@ -49,15 +45,65 @@ switch (true) do
 	{
 		_player removeItem "FirstAidKit";
 		_player addItem "Medikit";
+		_player addWeapon "Binocular";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player addWeapon "hgun_ACPC2_F";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player selectWeapon "hgun_ACPC2_F";
 	};
 	case (["_engineer_", typeOf _player] call fn_findString != -1):
 	{
 		_player addItem "MineDetector";
 		_player addItem "Toolkit";
+		_player addWeapon "Binocular";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player addWeapon "hgun_ACPC2_F";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player addItem "SmokeShell";
+		_player selectWeapon "hgun_ACPC2_F";
 	};
 	case (["_sniper_", typeOf _player] call fn_findString != -1):
 	{
 		_player addWeapon "Rangefinder";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player addWeapon "hgun_ACPC2_F";
+		_player addWeaponItem ["hgun_ACPC2_F", "muzzle_snds_acp"];
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player addMagazine "9Rnd_45ACP_Mag";
+		_player selectWeapon "hgun_ACPC2_F";
+	};
+	case (["_diver_", typeOf _player] call fn_findString != -1):
+	{
+		_player addWeapon "Binocular";
+		_player addMagazine "11Rnd_45ACP_Mag";
+		_player addWeapon "hgun_Pistol_heavy_01_F";
+		_player addWeaponItem ["hgun_Pistol_heavy_01_F", "muzzle_snds_acp"];
+		_player addMagazine "11Rnd_45ACP_Mag";
+		_player addMagazine "11Rnd_45ACP_Mag";
+		_player addMagazine "11Rnd_45ACP_Mag";
+		_player addItem "HandGrenade";
+		_player selectWeapon "hgun_Pistol_heavy_01_F";
+	};
+};
+
+switch (side _player) do
+{
+	case west:
+	{
+		_player addItem "Chemlight_blue";
+	};
+	case east:
+	{
+		_player addItem "Chemlight_red";
+	};
+	case resistance:
+	{
+		_player addItem "Chemlight_green";
 	};
 };
 
